@@ -25,7 +25,7 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 async function loadUsers() {
   const status = document.getElementById("status");
   const list = document.getElementById("list");
-  const { data, error } = await client.from("User").select("*");
+  const { data, error } = await client.from("users").select("*");
 
   if (error) {
     status.textContent = "Error: " + error.message;
