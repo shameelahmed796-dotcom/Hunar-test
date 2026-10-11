@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hunar Test</title>
+<style>
+body{font-family:sans-serif;padding:20px;max-width:600px;margin:auto}
+li{padding:8px 0;border-bottom:1px solid #ddd}
+.err{color:red}
+</style>
+</head>
+<body>
+<h2>Users list</h2>
+<p id="status">लोड हो रहा है...</p>
+<ul id="list"></ul>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "YAHAN_PROJECT_URL_DALO";
+const SUPABASE_KEY = "YAHAN_ANON_KEY_DALO";
+
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+async function loadUsers() {
+  const status = document.getElementById("status");
+  const list = document.getElementById("list");
+  const { data, error } = await client.from("User").select("*");
+
+  if (error) {
+    status.textContent = "Error: " + error.message;
+    status.className = "err";
+    return;
+  }
+
+  status.textContent = data.length
+    ? "कुल " + data.length + " रिकॉर्ड"
+    : "कनेक्शन ठीक है, पर अभी कोई रिकॉर्ड नहीं है";
+
+  data.forEach(u => {
+    const li = document.createElement("li");
+    li.textContent = u.Name || u.name || "(नाम नहीं)";
+    list.appendChild(li);
+  });
+}
+
+loadUsers();
+</script>
+</body>
+</html>
