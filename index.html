@@ -336,193 +336,342 @@ async function placeOrder(gigId, pkg) {
 
 // ==========================================
 // 5. WALLET (Deposit / Withdraw)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hunar.pk — Pakistan's Smart Freelancer Marketplace</title>
+<meta name="description" content="Hire verified Pakistani creators. Escrow-protected payments in PKR.">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Supabase Library -->
+<script src="https://unpkg.com/@supabase/supabase-js@2"></
+  const SUPABASE_URL = "https://hgkijsaotawhkbcceqme.supabase.co";
+const SUPABASE_KEY = "sb_publishable_Dal5rNWzgMZmkTQHX997GA_9kYgEqpY"
+:root{--bg:#f5f7fb;--card:#fff;--ink:#0b1b3a;--mut:#5d6c8a;--line:#e4e9f2;--g1:#0b8f63;--g2:#16c58b;--ind:#4f46e5;--navy:#0a1630;--bad:#e5484d;--warn:#f59e0b;--ok:#12a150;--sh:0 12px 32px -14px rgba(10,22,48,.28);--sh2:0 24px 54px -18px rgba(10,22,48,.4);--grad:linear-gradient(135deg,#0b8f63,#16c58b);--fh:'Plus Jakarta Sans','Inter',system-ui,sans-serif;--fb:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{overflow-x:hidden;font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.logo{font-family:var(--fh);letter-spacing:-.02em}
+a{color:inherit}
+.w{max-width:1180px;margin:auto;padding:0 20px}
+.sp{flex:1}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+button:disabled{opacity:.55;cursor:not-allowed}
+:focus-visible{outline:3px solid rgba(22,197,139,.45);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:12px;padding:10px 18px;font-weight:600;font-size:15px;transition:.2s;white-space:nowrap}
+.btn.pri{background:var(--grad);color:#fff;box-shadow:0 8px 20px -8px rgba(11,143,99,.7)}
+.btn.pri:hover{transform:translateY(-1px);box-shadow:0 12px 24px -8px rgba(11,143,99,.8)}
+.btn.dark{background:var(--navy);color:#fff}.btn.dark:hover{background:#13224a}
+.btn.ghost{border:1.5px solid var(--line);background:#fff}.btn.ghost:hover{border-color:var(--g2)}
+.btn.bad{background:#fff1f1;color:var(--bad);border:1.5px solid #ffd5d6}
+.btn.sm{padding:7px 12px;font-size:13px;border-radius:10px}
+.btn.full{width:100%}
+.hd{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:18px;height:66px}
+.logo{font-size:26px;font-weight:800;text-decoration:none}.logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.links{display:flex;gap:20px}.links a{text-decoration:none;color:var(--mut);font-weight:500;font-size:15px}.links a:hover{color:var(--ink)}
+#navR{display:flex;align-items:center;gap:10px}
+.ib{position:relative;width:40px;height:40px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-size:18px}
+.wpill{background:#ecfdf5;color:#067a54;font-weight:700;border-radius:99px;padding:8px 14px;font-size:14px;border:1px solid #c6f1e0}
+.hero{background:radial-gradient(900px 400px at 85% -10%,rgba(22,197,139,.35),transparent 60%),radial-gradient(700px 400px at 0% 100%,rgba(79,70,229,.4),transparent 60%),var(--navy);color:#fff;padding:70px 0 80px;position:relative;overflow:hidden}
+.hg{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:6px 14px;border-radius:99px;font-size:13px;font-weight:600;margin-bottom:18px}
+.hero h1{font-size:clamp(34px,5.4vw,58px);line-height:1.05;font-weight:800}.hero h1 em{font-style:normal;background:linear-gradient(90deg,#34e6a8,#a5b4fc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{margin:18px 0 26px;color:#c3cde6;max-width:520px;font-size:17px}
+.trust{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:22px;font-size:14px;color:#dbe4ff}
+.stats{display:flex;gap:28px;margin-top:30px;flex-wrap:wrap}.stats b{display:block;font-family:var(--fh);font-size:26px}.stats span{font-size:13px;color:#aebbe0}
+.hv{position:relative;height:340px}
+.gc{position:absolute;background:rgba(255,255,255,.96);color:var(--ink);border-radius:18px;padding:16px 18px;box-shadow:var(--sh2);animation:fl 6s ease-in-out infinite}
+.gc small{color:var(--mut);display:block}.gc b{font-family:var(--fh);font-size:20px}
+.gc.a{top:0;left:0;width:240px}.gc.b{top:120px;right:0;width:230px;animation-delay:-2s}.gc.c{bottom:0;left:30px;width:250px;animation-delay:-4s}
+.bar6{height:8px;border-radius:9px;background:#e5e7eb;margin-top:8px;overflow:hidden}.bar6 i{display:block;height:100%;background:var(--grad);border-radius:9px}
+@keyframes fl{50%{transform:translateY(-10px)}}
+section{padding:40px 0}
+.sh{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.sh h2{font-size:28px}.sh p{color:var(--mut)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;transition:.25s}
+.card.hv2:hover{transform:translateY(-4px);box-shadow:var(--sh2);border-color:#bfeedd}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cats{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:thin}
+.chip{white-space:nowrap;background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:8px 16px;font-weight:600;font-size:14px;transition:.2s}.chip:hover{border-color:var(--g2)}
+.chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.bar{display:flex;gap:12px;align-items:center;justify-content:space-between;margin:12px 0 16px;flex-wrap:wrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.gig{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:.25s}
+.gig:hover{transform:translateY(-5px);box-shadow:var(--sh2);border-color:#bfeedd}
+.cov{height:138px;position:relative;display:flex;align-items:flex-end;padding:14px;color:#fff;font-family:var(--fh);font-weight:800;font-size:18px;background-size:cover;background-position:center}
+.cov .ic{position:absolute;right:12px;top:6px;font-size:46px;opacity:.35}
+.gb{padding:14px 16px 16px;display:flex;flex-direction:column;gap:9px;flex:1}
+.sel{display:flex;align-items:center;gap:9px;font-size:14px}.sel small{display:block;color:var(--g1);font-weight:600;font-size:12px}
+.gt{font-weight:600;line-height:1.35}
+.gf{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--mut);padding-top:10px;border-top:1px solid var(--line)}.gf b{color:var(--ink)}
+.star{color:#f59e0b}
+.empty{padding:40px;text-align:center;color:var(--mut);grid-column:1/-1}
+footer{background:#fff;border-top:1px solid var(--line);padding:28px 0;color:var(--mut);font-size:14px;margin-top:30px}
+footer .row{justify-content:space-between}
+.mod{position:fixed;inset:0;background:rgba(8,14,32,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:14px;z-index:50}
+.mod.on{display:flex}
+.box{background:#fff;border-radius:22px;max-width:620px;width:100%;max-height:92vh;overflow:auto;padding:24px;box-shadow:var(--sh2);animation:pop .22s ease}
+@keyframes pop{from{transform:translateY(14px) scale(.98);opacity:0}}
+.box h2{font-size:24px;margin-bottom:4px}.box h3{margin:16px 0 8px;font-size:17px}
+.x{float:right;background:var(--bg);border-radius:10px;padding:6px 12px;font-weight:600;font-size:13px;margin-left:8px}
+.fld{margin-top:12px}.fld label{display:block;font-size:13px;font-weight:600;margin-bottom:5px;color:#26365c}
+input,select,textarea{font:inherit;width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);transition:.15s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--g2);box-shadow:0 0 0 4px rgba(22,197,139,.15)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.note{font-size:13px;color:var(--mut)}
+.err{color:var(--bad);font-size:14px;font-weight:600;margin-top:10px;min-height:20px}
+.tabs{display:flex;gap:6px;background:var(--bg);padding:4px;border-radius:12px;margin:12px 0}
+.tabs button{flex:1;padding:9px;border-radius:9px;font-weight:600;font-size:14px;color:var(--mut)}.tabs button.on{background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(10,22,48,.1)}
+.pk{border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:12px;background:#fff}
+.pk.hl{background:linear-gradient(135deg,#f0fdf8,#fff);border-color:#c6f1e0}
+.pr{font-family:var(--fh);font-size:30px;font-weight:800}
+.pill{display:inline-block;font-size:12px;font-weight:700;border-radius:99px;padding:3px 10px;background:var(--bg);color:var(--mut)}
+.pill.ok{background:#d1fae5;color:#065f46}.pill.warn{background:#fef3c7;color:#92400e}.pill.bad{background:#fee2e2;color:#991b1b}.pill.info{background:#e0e7ff;color:#3730a3}
+.chat{max-height:300px;min-height:140px;overflow:auto;background:var(--bg);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.bub{max-width:82%;padding:9px 12px;border-radius:14px;font-size:14px;word-break:break-word}
+.bub.me{align-self:flex-end;background:var(--navy);color:#fff;border-bottom-right-radius:4px}.bub.ot{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+#toasts{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;z-index:90;width:min(92vw,420px)}
+.toast{background:var(--navy);color:#fff;padding:12px 16px;border-radius:14px;font-size:14px;box-shadow:var(--sh2);animation:pop .2s}
+.toast.bad{background:#991b1b}.toast.ok{background:#065f46}
+@media(max-width:900px){.hg{grid-template-columns:1fr}.hv{display:none}.links{display:none}.hero{padding:44px 0 54px}}
+@media(max-width:640px){.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body id="top">
+<header class="hd"><div class="w nav">
+  <a class="logo" href="#top">Hunar<span>.pk</span></a>
+  <nav class="links"><a href="#explore">Explore</a><a href="#how">How it works</a></nav>
+  <div class="sp"></div><div id="navR"></div>
+</div></header>
+
+<section class="hero"><div class="w hg">
+  <div>
+    <span class="eyebrow">🇵🇰 Made for Pakistan</span>
+    <h1>Hire Pakistan's best talent, <em>protected by escrow</em></h1>
+    <p class="lead">Verified designers, editors, developers and creators. Pay in PKR through Easypaisa, JazzCash or your bank. Your money stays safe in escrow until you approve the work.</p>
+    <div class="row" style="margin-top:22px">
+      <button class="btn pri" onclick="openAuth()">Hire talent</button>
+      <button class="btn ghost" style="background:transparent;color:#fff;border-color:#fff" onclick="openAuth()">Sell your skills</button>
+    </div>
+    <div class="stats"><div><b>5%</b><span>Buyer fee only</span></div><div><b>10%</b><span>Partner commission</span></div><div><b>PKR</b><span>Local payments</span></div></div>
+  </div>
+  <div class="hv" aria-hidden="true">
+    <div class="gc a"><small>Escrow secured</small><b>PKR 10,500</b><div class="bar6"><i style="width:68%"></i></div><small style="margin-top:6px">Order in progress</small></div>
+    <div class="gc b"><small>AI Quality Check</small><b>Passed ✔ 100%</b></div>
+    <div class="gc c"><small>Partner payout</small><b>PKR 9,000</b><small>Released after you approve</small></div>
+  </div>
+</div></section>
+
+<section id="explore" style="padding-top:10px"><div class="w">
+  <div class="sh"><div><h2>Explore services</h2><p>Compare verified partners by rating, price and delivery time.</p></div></div>
+  <div class="cats" id="cats"></div>
+  <div class="bar"><b id="count">Loading...</b></div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<footer><div class="w row"><span>© Hunar.pk — a marketplace for Pakistan's freelancers.</span></div></footer>
+
+<div class="mod" id="mod"><div class="box" id="box"></div></div>
+<div id="toasts"></div>
+
+<script>
 // ==========================================
-function openWallet() {
-  if (!ME) return;
+// 1. SUPABASE SETUP
+// ==========================================
+const SUPABASE_URL = "https://hgkijsaotawhkbcceqme.supabase.co";
+const SUPABASE_KEY = "sb_publishable_Dal5rNWzgMZmkTQHX997GA_9kYgEqpY";
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let ME = null; // Current User Profile
+let GIGS = []; // Gigs loaded from DB
+
+const CATS = [["Graphic Design","🎨"],["Video Editing","🎬"],["Influencer Marketing","📣"],["Social Media","📱"],["Web Development","💻"],["Writing & Translation","✍️"],["Voice Over","🎙️"]];
+const GRAD = [["#0b8f63","#16c58b"],["#4f46e5","#7c3aed"],["#e11d74","#f59e0b"],["#0284c7","#22d3ee"],["#0f172a","#4f46e5"],["#b45309","#f59e0b"],["#be123c","#fb7185"]];
+
+const $ = id => document.getElementById(id);
+const pkr = n => "PKR " + Math.round(Number(n)||0).toLocaleString("en-PK");
+const toast = (m, t) => { const e = document.createElement("div"); e.className = "toast " + (t||""); e.textContent = m; $("toasts").appendChild(e); setTimeout(()=>e.remove(), 3800); };
+const M = {
+  show: (html) => { $("box").innerHTML = html; $("mod").classList.add("on"); },
+  close: () => { $("mod").classList.remove("on"); }
+};
+
+// ==========================================
+// 2. AUTHENTICATION
+// ==========================================
+supabase.auth.onAuthStateChange(async (event, session) => {
+  if (session) {
+    // Fetch user profile from public.users
+    const { data } = await supabase.from('users').select('*').eq('auth_user_id', session.user.id).single();
+    ME = data;
+    updateNav();
+    loadGigs();
+  } else {
+    ME = null;
+    updateNav();
+  }
+});
+
+function updateNav() {
+  const nav = $("navR");
+  if (ME) {
+    const role = ME.role || 'buyer';
+    nav.innerHTML = `
+      <button class="wpill" onclick="openWallet()">${pkr(ME.balance_pkr || 0)}</button>
+      <button class="btn ghost sm" onclick="openOrders()">Orders</button>
+      ${role === 'admin' ? `<button class="btn dark sm" onclick="openAdmin()">Admin</button>` : ''}
+      <button class="btn bad sm" onclick="logout()">Logout</button>
+    `;
+  } else {
+    nav.innerHTML = `<button class="btn pri sm" onclick="openAuth()">Sign In / Join</button>`;
+  }
+}
+
+function openAuth() {
   M.show(`
     <button class="x" onclick="M.close()">Close</button>
-    <h2>My Wallet</h2>
-    <div class="pk hl">
-      <div class="pr">${pkr(ME.balance_pkr || 0)}</div>
-      <div class="note">Available Balance</div>
-    </div>
-
-    <div class="tabs">
-      <button class="on" onclick="document.getElementById('dep-sec').style.display='block';document.getElementById('wd-sec').style.display='none'">Deposit</button>
-      <button onclick="document.getElementById('dep-sec').style.display='none';document.getElementById('wd-sec').style.display='block'">Withdraw</button>
-    </div>
-
-    <!-- Deposit Section -->
-    <div id="dep-sec">
-      <p class="note" style="margin-bottom:8px">Send money to Easypaisa: <b>0370-8965445</b> (Hunar.pk)</p>
-      <div class="fld"><label>Amount Sent (PKR)</label><input type="number" id="dep-amt"></div>
-      <div class="fld"><label>Transaction ID (TID)</label><input type="text" id="dep-txid"></div>
-      <button class="btn pri full" onclick="submitDeposit()">Submit Deposit Request</button>
-    </div>
-
-    <!-- Withdraw Section -->
-    <div id="wd-sec" style="display:none">
-      <div class="fld"><label>Amount to Withdraw</label><input type="number" id="wd-amt"></div>
-      <div class="fld"><label>Method</label>
-        <select id="wd-method">
-          <option value="easypaisa">Easypaisa</option>
-          <option value="jazzcash">JazzCash</option>
-          <option value="bank">Bank</option>
-        </select>
-      </div>
-      <div class="fld"><label>Account Number / IBAN</label><input type="text" id="wd-dest"></div>
-      <button class="btn dark full" onclick="submitWithdraw()">Request Withdrawal</button>
-    </div>
+    <h2>Welcome to Hunar.pk</h2>
+    <p class="note">Sign in to your account or create a new one.</p>
+    <div class="fld"><label>Email</label><input type="email" id="auth-email" placeholder="you@example.com"></div>
+    <div class="fld"><label>Password</label><input type="password" id="auth-pass" placeholder="••••••••"></div>
+    <p class="err" id="auth-err"></p>
+    <button class="btn pri full" style="margin-top:12px" onclick="handleLogin()">Login</button>
+    <button class="btn ghost full" style="margin-top:10px" onclick="handleSignup()">Create Account</button>
   `);
 }
 
-async function submitDeposit() {
-  const amt = $("dep-amt").value;
-  const txid = $("dep-txid").value;
-  if (!amt || !txid) return toast("Enter amount and TID", "bad");
-
-  const { error } = await supabase.from('deposit_requests').insert({
-    user_id: ME.id,
-    amount_pkr: parseInt(amt),
-    transaction_id: txid,
-    payment_method: 'easypaisa',
-    paid_from: 'provided_in_chat'
-  });
-  if (error) toast(error.message, "bad");
-  else { toast("Deposit request sent to Admin!", "ok"); M.close(); }
+async function handleLogin() {
+  const email = $("auth-email").value;
+  const password = $("auth-pass").value;
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) $("auth-err").innerText = error.message;
+  else M.close();
 }
 
-async function submitWithdraw() {
-  const amt = $("wd-amt").value;
-  const method = $("wd-method").value;
-  const dest = $("wd-dest").value;
-  if (!amt || !dest) return toast("Enter amount and destination", "bad");
+async function handleSignup() {
+  const email = $("auth-email").value;
+  const password = $("auth-pass").value;
+  const { error } = await supabase.auth.signUp({ email, password });
+  if (error) $("auth-err").innerText = error.message;
+  else toast("Account created! You can now login.", "ok");
+}
 
-  const { error } = await supabase.rpc('fn_request_withdrawal', {
-    p_amount: parseInt(amt),
-    p_method: method,
-    p_destination: dest,
-    p_title: ME.name || 'User',
-    p_bank: method === 'bank' ? 'Bank Name' : ''
-  });
+async function logout() {
+  await supabase.auth.signOut();
+  location.reload();
+}
+
+// ==========================================
+// 3. GIGS & RENDERING
+// ==========================================
+async function loadGigs() {
+  const { data, error } = await supabase.from('gigs').select('*').eq('active', true);
+  if (error) { toast("Error loading gigs", "bad"); return; }
+  GIGS = data || [];
+  renderGigs();
+}
+
+function renderGigs() {
+  const grid = $("grid");
+  $("count").innerText = GIGS.length + " services available";
   
-  if (error) toast(error.message, "bad");
-  else { toast("Withdrawal request submitted!", "ok"); M.close(); }
-}
+  if (GIGS.length === 0) {
+    grid.innerHTML = `<div class="empty">No gigs found. (Add some via Supabase dashboard).</div>`;
+    return;
+  }
 
-// ==========================================
-// 6. ORDERS & CHAT
-// ==========================================
-async function openOrders() {
-  const { data, error } = await supabase.from('orders')
-    .select('*, gigs(title)')
-    .or(`buyer_id.eq.${ME.id},seller_id.eq.${ME.id}`)
-    .order('created_at', { ascending: false });
-
-  if (error) return toast(error.message, "bad");
-
-  let html = `<button class="x" onclick="M.close()">Close</button><h2>My Orders</h2>`;
-  if (data.length === 0) html += `<p class="note">No orders yet.</p>`;
-
-  data.forEach(o => {
-    html += `
-      <div class="pk" style="display:flex;justify-content:space-between;align-items:center">
-        <div>
-          <b>${o.gigs?.title || 'Gig'}</b>
-          <div class="note">${pkr(o.price_pkr)} · <span class="pill info">${o.status}</span></div>
+  grid.innerHTML = GIGS.map(g => {
+    const c = g.category || "Graphic Design";
+    const cIndex = CATS.findIndex(x => x[0] === c) !== -1 ? CATS.findIndex(x => x[0] === c) : 0;
+    const grad = GRAD[cIndex % GRAD.length];
+    return `
+      <article class="gig" onclick="openGig(${g.id})">
+        <div class="cov" style="background:linear-gradient(135deg,${grad[0]},${grad[1]})">
+          <span class="ic">${CATS[cIndex][1]}</span>
+          ${c}
         </div>
-        <button class="btn ghost sm" onclick="openChat(${o.id})">Chat</button>
-      </div>
+        <div class="gb">
+          <div class="sel">
+            <div class="av" style="background:${grad[0]}">${g.title.charAt(0)}</div>
+            <div><b>${g.title}</b><small>Verified Partner</small></div>
+          </div>
+          <div class="gt" style="display:none">${g.description}</div>
+          <div class="gf">
+            <span><span class="star">★</span> <b>5.0</b></span>
+            <span>From <b>${pkr(g.basic_price_pkr)}</b></span>
+          </div>
+        </div>
+      </article>
     `;
-  });
-  M.show(html);
-}
-
-async function openChat(orderId) {
-  M.show(`
-    <button class="x" onclick="openOrders()">Back</button>
-    <h2>Order Chat</h2>
-    <div class="chat" id="chat-box">Loading...</div>
-    <div class="row" style="margin-top:10px">
-      <input type="text" id="chat-input" placeholder="Type a message..." style="flex:1">
-      <button class="btn pri" onclick="sendMsg(${orderId})">Send</button>
-    </div>
-  `);
-  loadMessages(orderId);
-}
-
-async function loadMessages(orderId) {
-  const { data } = await supabase.from('messages').select('*').eq('order_id', orderId).order('created_at');
-  const box = $("chat-box");
-  if (!box) return;
-  box.innerHTML = data.map(m => `
-    <div class="bub ${m.sender_id === ME.id ? 'me' : 'ot'}">${m.body}</div>
-  `).join('');
-  box.scrollTop = box.scrollHeight;
-}
-
-async function sendMsg(orderId) {
-  const body = $("chat-input").value;
-  if (!body) return;
-  await supabase.from('messages').insert({ order_id: orderId, sender_id: ME.id, body });
-  $("chat-input").value = '';
-  loadMessages(orderId);
+  }).join('');
 }
 
 // ==========================================
-// 7. ADMIN PANEL
+// 4. GIG DETAILS & ORDER CREATION
 // ==========================================
-async function openAdmin() {
-  if (ME.role !== 'admin') return toast("Access denied", "bad");
-
-  const { data: deps } = await supabase.from('deposit_requests').select('*').eq('status', 'pending');
-  const { data: wds } = await supabase.from('withdrawal_requests').select('*').eq('status', 'pending');
-
-  let html = `<button class="x" onclick="M.close()">Close</button><h2>Admin Panel</h2>`;
+async function openGig(id) {
+  if (!ME) { toast("Please login to view details"); openAuth(); return; }
+  const g = GIGS.find(x => x.id === id);
   
-  html += `<h3>Pending Deposits</h3>`;
-  if (!deps || deps.length === 0) html += `<p class="note">None</p>`;
-  deps?.forEach(d => {
-    html += `
-      <div class="pk">
-        <b>PKR ${d.amount_pkr}</b> (User: ${d.user_id})
-        <div class="note">TID: ${d.transaction_id}</div>
-        <button class="btn pri sm" style="margin-top:8px" onclick="approveDeposit('${d.id}')">Approve</button>
-      </div>
-    `;
+  M.show(`
+    <button class="x" onclick="M.close()">Close</button>
+    <h2>${g.title}</h2>
+    <p class="note" style="margin-top:6px">${g.description}</p>
+    
+    <div class="tabs">
+      <button class="on" id="tab-basic" onclick="selectPkg('basic')">Basic</button>
+  nclick="selectPkg('standard')">Standard</button>
+      <button id="tab-premium" onclick="selectPkg('premium')">Premium</button>
+    </div>
+
+    <div class="pk hl">
+      <div class="pr" id="pkg-price">${pkr(g.basic_price_pkr)}</div>
+      <div class="note">Delivery in ${g.delivery_days || 3} days</div>
+    </div>
+
+    <button class="btn pri full" style="margin-top:16px" onclick="placeOrder(${g.id}, 'basic')" id="order-btn">Order Now (Basic)</button>
+    <p class="note" style="text-align:center;margin-top:8px">Escrow protected. 5% buyer fee applies.</p>
+  `);
+}
+
+let SELECTED_PKG = 'basic';
+let SELECTED_PRICE = 0;
+
+function selectPkg(pkg) {
+  SELECTED_PKG = pkg;
+  document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('on'));
+  $(`tab-${pkg}`).classList.add('on');
+  
+  const g = GIGS.find(x => x.id === parseInt($("order-btn").getAttribute('onclick').match(/\d+/)[0]));
+  SELECTED_PRICE = pkg === 'basic' ? g.basic_price_pkr : pkg === 'standard' ? g.standard_price_pkr : g.premium_price_pkr;
+  
+  $("pkg-price").innerText = pkr(SELECTED_PRICE);
+  $("order-btn").innerText = `Order Now (${pkg.charAt(0).toUpperCase() + pkg.slice(1)})`;
+  $("order-btn").setAttribute('onclick', `placeOrder(${g.id}, '${pkg}')`);
+}
+
+async function placeOrder(gigId, pkg) {
+  // Call our secure SQL function
+  const { error } = await supabase.rpc('fn_create_order', {
+    p_gig_id: gigId,
+    p_package: pkg
   });
 
-  html += `<h3>Pending Withdrawals</h3>`;
-  if (!wds || wds.length === 0) html += `<p class="note">None</p>`;
-  wds?.forEach(w => {
-    html += `
-      <div class="pk">
-        <b>PKR ${w.amount_pkr}</b> (User: ${w.user_id})
-        <div class="note">To: ${w.method} - ${w.destination}</div>
-        <button class="btn dark sm" style="margin-top:8px" onclick="approveWithdrawal('${w.id}')">Mark as Paid</button>
-      </div>
-    `;
-  });
-
-  M.show(html);
+  if (error) {
+    if (error.message.includes("Insufficient wallet balance")) {
+      toast("Not enough wallet balance. Please top up.", "bad");
+      openWallet();
+    } else {
+      toast(error.message, "bad");
+    }
+  } else {
+    toast("Order placed successfully!", "ok");
+    M.close();
+  }
 }
 
-async function approveDeposit(id) {
-  if (!confirm("Confirm money received?")) return;
-  const { error } = await supabase.rpc('fn_approve_deposit', { p_request_id: id });
-  if (error) toast(error.message, "bad");
-  else { toast("Deposit Approved!", "ok"); openAdmin(); }
-}
-
-async function approveWithdrawal(id) {
-  if (!confirm("Confirm money sent?")) return;
-  const { error } = await supabase.rpc('fn_approve_withdrawal', { p_request_id: id });
-  if (error) toast(error.message, "bad");
-  else { toast("Withdrawal Paid!", "ok"); openAdmin(); }
-}
-
-// Initialize
-loadGigs();
-</script>
-</body>
-</html>
+// ==========================================
+// 5. WALLET (Deposit / Withdraw)
