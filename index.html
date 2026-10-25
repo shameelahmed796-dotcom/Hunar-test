@@ -1,677 +1,561 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Hunar.pk — Pakistan's Smart Freelancer Marketplace</title>
-<meta name="description" content="Hire verified Pakistani creators. Escrow-protected payments in PKR.">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<!-- Supabase Library -->
-<script src="https://unpkg.com/@supabase/supabase-js@2"></
-  const SUPABASE_URL = "https://hgkijsaotawhkbcceqme.supabase.co";
-const SUPABASE_KEY = "sb_publishable_Dal5rNWzgMZmkTQHX997GA_9kYgEqpY"
-:root{--bg:#f5f7fb;--card:#fff;--ink:#0b1b3a;--mut:#5d6c8a;--line:#e4e9f2;--g1:#0b8f63;--g2:#16c58b;--ind:#4f46e5;--navy:#0a1630;--bad:#e5484d;--warn:#f59e0b;--ok:#12a150;--sh:0 12px 32px -14px rgba(10,22,48,.28);--sh2:0 24px 54px -18px rgba(10,22,48,.4);--grad:linear-gradient(135deg,#0b8f63,#16c58b);--fh:'Plus Jakarta Sans','Inter',system-ui,sans-serif;--fb:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{overflow-x:hidden;font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
-h1,h2,h3,h4,.logo{font-family:var(--fh);letter-spacing:-.02em}
-a{color:inherit}
-.w{max-width:1180px;margin:auto;padding:0 20px}
-.sp{flex:1}
-button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
-button:disabled{opacity:.55;cursor:not-allowed}
-:focus-visible{outline:3px solid rgba(22,197,139,.45);outline-offset:2px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:12px;padding:10px 18px;font-weight:600;font-size:15px;transition:.2s;white-space:nowrap}
-.btn.pri{background:var(--grad);color:#fff;box-shadow:0 8px 20px -8px rgba(11,143,99,.7)}
-.btn.pri:hover{transform:translateY(-1px);box-shadow:0 12px 24px -8px rgba(11,143,99,.8)}
-.btn.dark{background:var(--navy);color:#fff}.btn.dark:hover{background:#13224a}
-.btn.ghost{border:1.5px solid var(--line);background:#fff}.btn.ghost:hover{border-color:var(--g2)}
-.btn.bad{background:#fff1f1;color:var(--bad);border:1.5px solid #ffd5d6}
-.btn.sm{padding:7px 12px;font-size:13px;border-radius:10px}
-.btn.full{width:100%}
-.hd{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;gap:18px;height:66px}
-.logo{font-size:26px;font-weight:800;text-decoration:none}.logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.links{display:flex;gap:20px}.links a{text-decoration:none;color:var(--mut);font-weight:500;font-size:15px}.links a:hover{color:var(--ink)}
-#navR{display:flex;align-items:center;gap:10px}
-.ib{position:relative;width:40px;height:40px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-size:18px}
-.wpill{background:#ecfdf5;color:#067a54;font-weight:700;border-radius:99px;padding:8px 14px;font-size:14px;border:1px solid #c6f1e0}
-.hero{background:radial-gradient(900px 400px at 85% -10%,rgba(22,197,139,.35),transparent 60%),radial-gradient(700px 400px at 0% 100%,rgba(79,70,229,.4),transparent 60%),var(--navy);color:#fff;padding:70px 0 80px;position:relative;overflow:hidden}
-.hg{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
-.eyebrow{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:6px 14px;border-radius:99px;font-size:13px;font-weight:600;margin-bottom:18px}
-.hero h1{font-size:clamp(34px,5.4vw,58px);line-height:1.05;font-weight:800}.hero h1 em{font-style:normal;background:linear-gradient(90deg,#34e6a8,#a5b4fc);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p.lead{margin:18px 0 26px;color:#c3cde6;max-width:520px;font-size:17px}
-.trust{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:22px;font-size:14px;color:#dbe4ff}
-.stats{display:flex;gap:28px;margin-top:30px;flex-wrap:wrap}.stats b{display:block;font-family:var(--fh);font-size:26px}.stats span{font-size:13px;color:#aebbe0}
-.hv{position:relative;height:340px}
-.gc{position:absolute;background:rgba(255,255,255,.96);color:var(--ink);border-radius:18px;padding:16px 18px;box-shadow:var(--sh2);animation:fl 6s ease-in-out infinite}
-.gc small{color:var(--mut);display:block}.gc b{font-family:var(--fh);font-size:20px}
-.gc.a{top:0;left:0;width:240px}.gc.b{top:120px;right:0;width:230px;animation-delay:-2s}.gc.c{bottom:0;left:30px;width:250px;animation-delay:-4s}
-.bar6{height:8px;border-radius:9px;background:#e5e7eb;margin-top:8px;overflow:hidden}.bar6 i{display:block;height:100%;background:var(--grad);border-radius:9px}
-@keyframes fl{50%{transform:translateY(-10px)}}
-section{padding:40px 0}
-.sh{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:18px;flex-wrap:wrap}
-.sh h2{font-size:28px}.sh p{color:var(--mut)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;transition:.25s}
-.card.hv2:hover{transform:translateY(-4px);box-shadow:var(--sh2);border-color:#bfeedd}
-.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.cats{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:thin}
-.chip{white-space:nowrap;background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:8px 16px;font-weight:600;font-size:14px;transition:.2s}.chip:hover{border-color:var(--g2)}
-.chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
-.bar{display:flex;gap:12px;align-items:center;justify-content:space-between;margin:12px 0 16px;flex-wrap:wrap}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
-.gig{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:.25s}
-.gig:hover{transform:translateY(-5px);box-shadow:var(--sh2);border-color:#bfeedd}
-.cov{height:138px;position:relative;display:flex;align-items:flex-end;padding:14px;color:#fff;font-family:var(--fh);font-weight:800;font-size:18px;background-size:cover;background-position:center}
-.cov .ic{position:absolute;right:12px;top:6px;font-size:46px;opacity:.35}
-.gb{padding:14px 16px 16px;display:flex;flex-direction:column;gap:9px;flex:1}
-.sel{display:flex;align-items:center;gap:9px;font-size:14px}.sel small{display:block;color:var(--g1);font-weight:600;font-size:12px}
-.gt{font-weight:600;line-height:1.35}
-.gf{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--mut);padding-top:10px;border-top:1px solid var(--line)}.gf b{color:var(--ink)}
-.star{color:#f59e0b}
-.empty{padding:40px;text-align:center;color:var(--mut);grid-column:1/-1}
-footer{background:#fff;border-top:1px solid var(--line);padding:28px 0;color:var(--mut);font-size:14px;margin-top:30px}
-footer .row{justify-content:space-between}
-.mod{position:fixed;inset:0;background:rgba(8,14,32,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:14px;z-index:50}
-.mod.on{display:flex}
-.box{background:#fff;border-radius:22px;max-width:620px;width:100%;max-height:92vh;overflow:auto;padding:24px;box-shadow:var(--sh2);animation:pop .22s ease}
-@keyframes pop{from{transform:translateY(14px) scale(.98);opacity:0}}
-.box h2{font-size:24px;margin-bottom:4px}.box h3{margin:16px 0 8px;font-size:17px}
-.x{float:right;background:var(--bg);border-radius:10px;padding:6px 12px;font-weight:600;font-size:13px;margin-left:8px}
-.fld{margin-top:12px}.fld label{display:block;font-size:13px;font-weight:600;margin-bottom:5px;color:#26365c}
-input,select,textarea{font:inherit;width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);transition:.15s}
-input:focus,select:focus,textarea:focus{outline:0;border-color:var(--g2);box-shadow:0 0 0 4px rgba(22,197,139,.15)}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.note{font-size:13px;color:var(--mut)}
-.err{color:var(--bad);font-size:14px;font-weight:600;margin-top:10px;min-height:20px}
-.tabs{display:flex;gap:6px;background:var(--bg);padding:4px;border-radius:12px;margin:12px 0}
-.tabs button{flex:1;padding:9px;border-radius:9px;font-weight:600;font-size:14px;color:var(--mut)}.tabs button.on{background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(10,22,48,.1)}
-.pk{border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:12px;background:#fff}
-.pk.hl{background:linear-gradient(135deg,#f0fdf8,#fff);border-color:#c6f1e0}
-.pr{font-family:var(--fh);font-size:30px;font-weight:800}
-.pill{display:inline-block;font-size:12px;font-weight:700;border-radius:99px;padding:3px 10px;background:var(--bg);color:var(--mut)}
-.pill.ok{background:#d1fae5;color:#065f46}.pill.warn{background:#fef3c7;color:#92400e}.pill.bad{background:#fee2e2;color:#991b1b}.pill.info{background:#e0e7ff;color:#3730a3}
-.chat{max-height:300px;min-height:140px;overflow:auto;background:var(--bg);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:8px}
-.bub{max-width:82%;padding:9px 12px;border-radius:14px;font-size:14px;word-break:break-word}
-.bub.me{align-self:flex-end;background:var(--navy);color:#fff;border-bottom-right-radius:4px}.bub.ot{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
-#toasts{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;z-index:90;width:min(92vw,420px)}
-.toast{background:var(--navy);color:#fff;padding:12px 16px;border-radius:14px;font-size:14px;box-shadow:var(--sh2);animation:pop .2s}
-.toast.bad{background:#991b1b}.toast.ok{background:#065f46}
-@media(max-width:900px){.hg{grid-template-columns:1fr}.hv{display:none}.links{display:none}.hero{padding:44px 0 54px}}
-@media(max-width:640px){.two{grid-template-columns:1fr}}
-</style>
-</head>
-<body id="top">
-<header class="hd"><div class="w nav">
-  <a class="logo" href="#top">Hunar<span>.pk</span></a>
-  <nav class="links"><a href="#explore">Explore</a><a href="#how">How it works</a></nav>
-  <div class="sp"></div><div id="navR"></div>
-</div></header>
-
-<section class="hero"><div class="w hg">
-  <div>
-    <span class="eyebrow">🇵🇰 Made for Pakistan</span>
-    <h1>Hire Pakistan's best talent, <em>protected by escrow</em></h1>
-    <p class="lead">Verified designers, editors, developers and creators. Pay in PKR through Easypaisa, JazzCash or your bank. Your money stays safe in escrow until you approve the work.</p>
-    <div class="row" style="margin-top:22px">
-      <button class="btn pri" onclick="openAuth()">Hire talent</button>
-      <button class="btn ghost" style="background:transparent;color:#fff;border-color:#fff" onclick="openAuth()">Sell your skills</button>
-    </div>
-    <div class="stats"><div><b>5%</b><span>Buyer fee only</span></div><div><b>10%</b><span>Partner commission</span></div><div><b>PKR</b><span>Local payments</span></div></div>
-  </div>
-  <div class="hv" aria-hidden="true">
-    <div class="gc a"><small>Escrow secured</small><b>PKR 10,500</b><div class="bar6"><i style="width:68%"></i></div><small style="margin-top:6px">Order in progress</small></div>
-    <div class="gc b"><small>AI Quality Check</small><b>Passed ✔ 100%</b></div>
-    <div class="gc c"><small>Partner payout</small><b>PKR 9,000</b><small>Released after you approve</small></div>
-  </div>
-</div></section>
-
-<section id="explore" style="padding-top:10px"><div class="w">
-  <div class="sh"><div><h2>Explore services</h2><p>Compare verified partners by rating, price and delivery time.</p></div></div>
-  <div class="cats" id="cats"></div>
-  <div class="bar"><b id="count">Loading...</b></div>
-  <div class="grid" id="grid"></div>
-</div></section>
-
-<footer><div class="w row"><span>© Hunar.pk — a marketplace for Pakistan's freelancers.</span></div></footer>
-
-<div class="mod" id="mod"><div class="box" id="box"></div></div>
-<div id="toasts"></div>
-
-<script>
-// ==========================================
-// 1. SUPABASE SETUP
-// ==========================================
-const SUPABASE_URL = "https://hgkijsaotawhkbcceqme.supabase.co";
-const SUPABASE_KEY = "sb_publishable_Dal5rNWzgMZmkTQHX997GA_9kYgEqpY";
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-let ME = null; // Current User Profile
-let GIGS = []; // Gigs loaded from DB
-
-const CATS = [["Graphic Design","🎨"],["Video Editing","🎬"],["Influencer Marketing","📣"],["Social Media","📱"],["Web Development","💻"],["Writing & Translation","✍️"],["Voice Over","🎙️"]];
-const GRAD = [["#0b8f63","#16c58b"],["#4f46e5","#7c3aed"],["#e11d74","#f59e0b"],["#0284c7","#22d3ee"],["#0f172a","#4f46e5"],["#b45309","#f59e0b"],["#be123c","#fb7185"]];
-
-const $ = id => document.getElementById(id);
-const pkr = n => "PKR " + Math.round(Number(n)||0).toLocaleString("en-PK");
-const toast = (m, t) => { const e = document.createElement("div"); e.className = "toast " + (t||""); e.textContent = m; $("toasts").appendChild(e); setTimeout(()=>e.remove(), 3800); };
-const M = {
-  show: (html) => { $("box").innerHTML = html; $("mod").classList.add("on"); },
-  close: () => { $("mod").classList.remove("on"); }
-};
-
-// ==========================================
-// 2. AUTHENTICATION
-// ==========================================
-supabase.auth.onAuthStateChange(async (event, session) => {
-  if (session) {
-    // Fetch user profile from public.users
-    const { data } = await supabase.from('users').select('*').eq('auth_user_id', session.user.id).single();
-    ME = data;
-    updateNav();
-    loadGigs();
-  } else {
-    ME = null;
-    updateNav();
-  }
-});
-
-function updateNav() {
-  const nav = $("navR");
-  if (ME) {
-    const role = ME.role || 'buyer';
-    nav.innerHTML = `
-      <button class="wpill" onclick="openWallet()">${pkr(ME.balance_pkr || 0)}</button>
-      <button class="btn ghost sm" onclick="openOrders()">Orders</button>
-      ${role === 'admin' ? `<button class="btn dark sm" onclick="openAdmin()">Admin</button>` : ''}
-      <button class="btn bad sm" onclick="logout()">Logout</button>
-    `;
-  } else {
-    nav.innerHTML = `<button class="btn pri sm" onclick="openAuth()">Sign In / Join</button>`;
-  }
-}
-
-function openAuth() {
-  M.show(`
-    <button class="x" onclick="M.close()">Close</button>
-    <h2>Welcome to Hunar.pk</h2>
-    <p class="note">Sign in to your account or create a new one.</p>
-    <div class="fld"><label>Email</label><input type="email" id="auth-email" placeholder="you@example.com"></div>
-    <div class="fld"><label>Password</label><input type="password" id="auth-pass" placeholder="••••••••"></div>
-    <p class="err" id="auth-err"></p>
-    <button class="btn pri full" style="margin-top:12px" onclick="handleLogin()">Login</button>
-    <button class="btn ghost full" style="margin-top:10px" onclick="handleSignup()">Create Account</button>
-  `);
-}
-
-async function handleLogin() {
-  const email = $("auth-email").value;
-  const password = $("auth-pass").value;
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) $("auth-err").innerText = error.message;
-  else M.close();
-}
-
-async function handleSignup() {
-  const email = $("auth-email").value;
-  const password = $("auth-pass").value;
-  const { error } = await supabase.auth.signUp({ email, password });
-  if (error) $("auth-err").innerText = error.message;
-  else toast("Account created! You can now login.", "ok");
-}
-
-async function logout() {
-  await supabase.auth.signOut();
-  location.reload();
-}
-
-// ==========================================
-// 3. GIGS & RENDERING
-// ==========================================
-async function loadGigs() {
-  const { data, error } = await supabase.from('gigs').select('*').eq('active', true);
-  if (error) { toast("Error loading gigs", "bad"); return; }
-  GIGS = data || [];
-  renderGigs();
-}
-
-function renderGigs() {
-  const grid = $("grid");
-  $("count").innerText = GIGS.length + " services available";
-  
-  if (GIGS.length === 0) {
-    grid.innerHTML = `<div class="empty">No gigs found. (Add some via Supabase dashboard).</div>`;
-    return;
-  }
-
-  grid.innerHTML = GIGS.map(g => {
-    const c = g.category || "Graphic Design";
-    const cIndex = CATS.findIndex(x => x[0] === c) !== -1 ? CATS.findIndex(x => x[0] === c) : 0;
-    const grad = GRAD[cIndex % GRAD.length];
-    return `
-      <article class="gig" onclick="openGig(${g.id})">
-        <div class="cov" style="background:linear-gradient(135deg,${grad[0]},${grad[1]})">
-          <span class="ic">${CATS[cIndex][1]}</span>
-          ${c}
-        </div>
-        <div class="gb">
-          <div class="sel">
-            <div class="av" style="background:${grad[0]}">${g.title.charAt(0)}</div>
-            <div><b>${g.title}</b><small>Verified Partner</small></div>
-          </div>
-          <div class="gt" style="display:none">${g.description}</div>
-          <div class="gf">
-            <span><span class="star">★</span> <b>5.0</b></span>
-            <span>From <b>${pkr(g.basic_price_pkr)}</b></span>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join('');
-}
-
-// ==========================================
-// 4. GIG DETAILS & ORDER CREATION
-// ==========================================
-async function openGig(id) {
-  if (!ME) { toast("Please login to view details"); openAuth(); return; }
-  const g = GIGS.find(x => x.id === id);
-  
-  M.show(`
-    <button class="x" onclick="M.close()">Close</button>
-    <h2>${g.title}</h2>
-    <p class="note" style="margin-top:6px">${g.description}</p>
-    
-    <div class="tabs">
-      <button class="on" id="tab-basic" onclick="selectPkg('basic')">Basic</button>
-      <button id="tab-standard" onclick="selectPkg('standard')">Standard</button>
-      <button id="tab-premium" onclick="selectPkg('premium')">Premium</button>
-    </div>
-
-    <div class="pk hl">
-      <div class="pr" id="pkg-price">${pkr(g.basic_price_pkr)}</div>
-      <div class="note">Delivery in ${g.delivery_days || 3} days</div>
-    </div>
-
-    <button class="btn pri full" style="margin-top:16px" onclick="placeOrder(${g.id}, 'basic')" id="order-btn">Order Now (Basic)</button>
-    <p class="note" style="text-align:center;margin-top:8px">Escrow protected. 5% buyer fee applies.</p>
-  `);
-}
-
-let SELECTED_PKG = 'basic';
-let SELECTED_PRICE = 0;
-
-function selectPkg(pkg) {
-  SELECTED_PKG = pkg;
-  document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('on'));
-  $(`tab-${pkg}`).classList.add('on');
-  
-  const g = GIGS.find(x => x.id === parseInt($("order-btn").getAttribute('onclick').match(/\d+/)[0]));
-  SELECTED_PRICE = pkg === 'basic' ? g.basic_price_pkr : pkg === 'standard' ? g.standard_price_pkr : g.premium_price_pkr;
-  
-  $("pkg-price").innerText = pkr(SELECTED_PRICE);
-  $("order-btn").innerText = `Order Now (${pkg.charAt(0).toUpperCase() + pkg.slice(1)})`;
-  $("order-btn").setAttribute('onclick', `placeOrder(${g.id}, '${pkg}')`);
-}
-
-async function placeOrder(gigId, pkg) {
-  // Call our secure SQL function
-  const { error } = await supabase.rpc('fn_create_order', {
-    p_gig_id: gigId,
-    p_package: pkg
-  });
-
-  if (error) {
-    if (error.message.includes("Insufficient wallet balance")) {
-      toast("Not enough wallet balance. Please top up.", "bad");
-      openWallet();
-    } else {
-      toast(error.message, "bad");
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hunar.pk</title>
+  <meta name="description" content="Hire verified Pakistani creators." />
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --ink: #0b1b3a;
+      --muted: #5d6c8a;
+      --line: #e4e9f2;
+      --green: #0b8f63;
+      --green-2: #16c58b;
+      --navy: #0a1630;
+      --red: #e5484d;
+      --shadow: 0 12px 32px -14px rgba(11, 23, 45, 0.28);
+      --grad: linear-gradient(135deg, #0b8f63, #16c58b);
     }
-  } else {
-    toast("Order placed successfully!", "ok");
-    M.close();
-  }
-}
 
-// ==========================================
-// 5. WALLET (Deposit / Withdraw)
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Hunar.pk — Pakistan's Smart Freelancer Marketplace</title>
-<meta name="description" content="Hire verified Pakistani creators. Escrow-protected payments in PKR.">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<!-- Supabase Library -->
-<script src="https://unpkg.com/@supabase/supabase-js@2"></
-  const SUPABASE_URL = "https://hgkijsaotawhkbcceqme.supabase.co";
-const SUPABASE_KEY = "sb_publishable_Dal5rNWzgMZmkTQHX997GA_9kYgEqpY"
-:root{--bg:#f5f7fb;--card:#fff;--ink:#0b1b3a;--mut:#5d6c8a;--line:#e4e9f2;--g1:#0b8f63;--g2:#16c58b;--ind:#4f46e5;--navy:#0a1630;--bad:#e5484d;--warn:#f59e0b;--ok:#12a150;--sh:0 12px 32px -14px rgba(10,22,48,.28);--sh2:0 24px 54px -18px rgba(10,22,48,.4);--grad:linear-gradient(135deg,#0b8f63,#16c58b);--fh:'Plus Jakarta Sans','Inter',system-ui,sans-serif;--fb:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{overflow-x:hidden;font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
-h1,h2,h3,h4,.logo{font-family:var(--fh);letter-spacing:-.02em}
-a{color:inherit}
-.w{max-width:1180px;margin:auto;padding:0 20px}
-.sp{flex:1}
-button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
-button:disabled{opacity:.55;cursor:not-allowed}
-:focus-visible{outline:3px solid rgba(22,197,139,.45);outline-offset:2px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:12px;padding:10px 18px;font-weight:600;font-size:15px;transition:.2s;white-space:nowrap}
-.btn.pri{background:var(--grad);color:#fff;box-shadow:0 8px 20px -8px rgba(11,143,99,.7)}
-.btn.pri:hover{transform:translateY(-1px);box-shadow:0 12px 24px -8px rgba(11,143,99,.8)}
-.btn.dark{background:var(--navy);color:#fff}.btn.dark:hover{background:#13224a}
-.btn.ghost{border:1.5px solid var(--line);background:#fff}.btn.ghost:hover{border-color:var(--g2)}
-.btn.bad{background:#fff1f1;color:var(--bad);border:1.5px solid #ffd5d6}
-.btn.sm{padding:7px 12px;font-size:13px;border-radius:10px}
-.btn.full{width:100%}
-.hd{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;gap:18px;height:66px}
-.logo{font-size:26px;font-weight:800;text-decoration:none}.logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.links{display:flex;gap:20px}.links a{text-decoration:none;color:var(--mut);font-weight:500;font-size:15px}.links a:hover{color:var(--ink)}
-#navR{display:flex;align-items:center;gap:10px}
-.ib{position:relative;width:40px;height:40px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-size:18px}
-.wpill{background:#ecfdf5;color:#067a54;font-weight:700;border-radius:99px;padding:8px 14px;font-size:14px;border:1px solid #c6f1e0}
-.hero{background:radial-gradient(900px 400px at 85% -10%,rgba(22,197,139,.35),transparent 60%),radial-gradient(700px 400px at 0% 100%,rgba(79,70,229,.4),transparent 60%),var(--navy);color:#fff;padding:70px 0 80px;position:relative;overflow:hidden}
-.hg{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
-.eyebrow{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:6px 14px;border-radius:99px;font-size:13px;font-weight:600;margin-bottom:18px}
-.hero h1{font-size:clamp(34px,5.4vw,58px);line-height:1.05;font-weight:800}.hero h1 em{font-style:normal;background:linear-gradient(90deg,#34e6a8,#a5b4fc);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p.lead{margin:18px 0 26px;color:#c3cde6;max-width:520px;font-size:17px}
-.trust{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:22px;font-size:14px;color:#dbe4ff}
-.stats{display:flex;gap:28px;margin-top:30px;flex-wrap:wrap}.stats b{display:block;font-family:var(--fh);font-size:26px}.stats span{font-size:13px;color:#aebbe0}
-.hv{position:relative;height:340px}
-.gc{position:absolute;background:rgba(255,255,255,.96);color:var(--ink);border-radius:18px;padding:16px 18px;box-shadow:var(--sh2);animation:fl 6s ease-in-out infinite}
-.gc small{color:var(--mut);display:block}.gc b{font-family:var(--fh);font-size:20px}
-.gc.a{top:0;left:0;width:240px}.gc.b{top:120px;right:0;width:230px;animation-delay:-2s}.gc.c{bottom:0;left:30px;width:250px;animation-delay:-4s}
-.bar6{height:8px;border-radius:9px;background:#e5e7eb;margin-top:8px;overflow:hidden}.bar6 i{display:block;height:100%;background:var(--grad);border-radius:9px}
-@keyframes fl{50%{transform:translateY(-10px)}}
-section{padding:40px 0}
-.sh{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:18px;flex-wrap:wrap}
-.sh h2{font-size:28px}.sh p{color:var(--mut)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;transition:.25s}
-.card.hv2:hover{transform:translateY(-4px);box-shadow:var(--sh2);border-color:#bfeedd}
-.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.cats{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:thin}
-.chip{white-space:nowrap;background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:8px 16px;font-weight:600;font-size:14px;transition:.2s}.chip:hover{border-color:var(--g2)}
-.chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
-.bar{display:flex;gap:12px;align-items:center;justify-content:space-between;margin:12px 0 16px;flex-wrap:wrap}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
-.gig{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:.25s}
-.gig:hover{transform:translateY(-5px);box-shadow:var(--sh2);border-color:#bfeedd}
-.cov{height:138px;position:relative;display:flex;align-items:flex-end;padding:14px;color:#fff;font-family:var(--fh);font-weight:800;font-size:18px;background-size:cover;background-position:center}
-.cov .ic{position:absolute;right:12px;top:6px;font-size:46px;opacity:.35}
-.gb{padding:14px 16px 16px;display:flex;flex-direction:column;gap:9px;flex:1}
-.sel{display:flex;align-items:center;gap:9px;font-size:14px}.sel small{display:block;color:var(--g1);font-weight:600;font-size:12px}
-.gt{font-weight:600;line-height:1.35}
-.gf{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--mut);padding-top:10px;border-top:1px solid var(--line)}.gf b{color:var(--ink)}
-.star{color:#f59e0b}
-.empty{padding:40px;text-align:center;color:var(--mut);grid-column:1/-1}
-footer{background:#fff;border-top:1px solid var(--line);padding:28px 0;color:var(--mut);font-size:14px;margin-top:30px}
-footer .row{justify-content:space-between}
-.mod{position:fixed;inset:0;background:rgba(8,14,32,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:14px;z-index:50}
-.mod.on{display:flex}
-.box{background:#fff;border-radius:22px;max-width:620px;width:100%;max-height:92vh;overflow:auto;padding:24px;box-shadow:var(--sh2);animation:pop .22s ease}
-@keyframes pop{from{transform:translateY(14px) scale(.98);opacity:0}}
-.box h2{font-size:24px;margin-bottom:4px}.box h3{margin:16px 0 8px;font-size:17px}
-.x{float:right;background:var(--bg);border-radius:10px;padding:6px 12px;font-weight:600;font-size:13px;margin-left:8px}
-.fld{margin-top:12px}.fld label{display:block;font-size:13px;font-weight:600;margin-bottom:5px;color:#26365c}
-input,select,textarea{font:inherit;width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);transition:.15s}
-input:focus,select:focus,textarea:focus{outline:0;border-color:var(--g2);box-shadow:0 0 0 4px rgba(22,197,139,.15)}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.note{font-size:13px;color:var(--mut)}
-.err{color:var(--bad);font-size:14px;font-weight:600;margin-top:10px;min-height:20px}
-.tabs{display:flex;gap:6px;background:var(--bg);padding:4px;border-radius:12px;margin:12px 0}
-.tabs button{flex:1;padding:9px;border-radius:9px;font-weight:600;font-size:14px;color:var(--mut)}.tabs button.on{background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(10,22,48,.1)}
-.pk{border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:12px;background:#fff}
-.pk.hl{background:linear-gradient(135deg,#f0fdf8,#fff);border-color:#c6f1e0}
-.pr{font-family:var(--fh);font-size:30px;font-weight:800}
-.pill{display:inline-block;font-size:12px;font-weight:700;border-radius:99px;padding:3px 10px;background:var(--bg);color:var(--mut)}
-.pill.ok{background:#d1fae5;color:#065f46}.pill.warn{background:#fef3c7;color:#92400e}.pill.bad{background:#fee2e2;color:#991b1b}.pill.info{background:#e0e7ff;color:#3730a3}
-.chat{max-height:300px;min-height:140px;overflow:auto;background:var(--bg);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:8px}
-.bub{max-width:82%;padding:9px 12px;border-radius:14px;font-size:14px;word-break:break-word}
-.bub.me{align-self:flex-end;background:var(--navy);color:#fff;border-bottom-right-radius:4px}.bub.ot{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
-#toasts{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;z-index:90;width:min(92vw,420px)}
-.toast{background:var(--navy);color:#fff;padding:12px 16px;border-radius:14px;font-size:14px;box-shadow:var(--sh2);animation:pop .2s}
-.toast.bad{background:#991b1b}.toast.ok{background:#065f46}
-@media(max-width:900px){.hg{grid-template-columns:1fr}.hv{display:none}.links{display:none}.hero{padding:44px 0 54px}}
-@media(max-width:640px){.two{grid-template-columns:1fr}}
-</style>
-</head>
-<body id="top">
-<header class="hd"><div class="w nav">
-  <a class="logo" href="#top">Hunar<span>.pk</span></a>
-  <nav class="links"><a href="#explore">Explore</a><a href="#how">How it works</a></nav>
-  <div class="sp"></div><div id="navR"></div>
-</div></header>
-
-<section class="hero"><div class="w hg">
-  <div>
-    <span class="eyebrow">🇵🇰 Made for Pakistan</span>
-    <h1>Hire Pakistan's best talent, <em>protected by escrow</em></h1>
-    <p class="lead">Verified designers, editors, developers and creators. Pay in PKR through Easypaisa, JazzCash or your bank. Your money stays safe in escrow until you approve the work.</p>
-    <div class="row" style="margin-top:22px">
-      <button class="btn pri" onclick="openAuth()">Hire talent</button>
-      <button class="btn ghost" style="background:transparent;color:#fff;border-color:#fff" onclick="openAuth()">Sell your skills</button>
-    </div>
-    <div class="stats"><div><b>5%</b><span>Buyer fee only</span></div><div><b>10%</b><span>Partner commission</span></div><div><b>PKR</b><span>Local payments</span></div></div>
-  </div>
-  <div class="hv" aria-hidden="true">
-    <div class="gc a"><small>Escrow secured</small><b>PKR 10,500</b><div class="bar6"><i style="width:68%"></i></div><small style="margin-top:6px">Order in progress</small></div>
-    <div class="gc b"><small>AI Quality Check</small><b>Passed ✔ 100%</b></div>
-    <div class="gc c"><small>Partner payout</small><b>PKR 9,000</b><small>Released after you approve</small></div>
-  </div>
-</div></section>
-
-<section id="explore" style="padding-top:10px"><div class="w">
-  <div class="sh"><div><h2>Explore services</h2><p>Compare verified partners by rating, price and delivery time.</p></div></div>
-  <div class="cats" id="cats"></div>
-  <div class="bar"><b id="count">Loading...</b></div>
-  <div class="grid" id="grid"></div>
-</div></section>
-
-<footer><div class="w row"><span>© Hunar.pk — a marketplace for Pakistan's freelancers.</span></div></footer>
-
-<div class="mod" id="mod"><div class="box" id="box"></div></div>
-<div id="toasts"></div>
-
-<script>
-// ==========================================
-// 1. SUPABASE SETUP
-// ==========================================
-const SUPABASE_URL = "https://hgkijsaotawhkbcceqme.supabase.co";
-const SUPABASE_KEY = "sb_publishable_Dal5rNWzgMZmkTQHX997GA_9kYgEqpY";
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-let ME = null; // Current User Profile
-let GIGS = []; // Gigs loaded from DB
-
-const CATS = [["Graphic Design","🎨"],["Video Editing","🎬"],["Influencer Marketing","📣"],["Social Media","📱"],["Web Development","💻"],["Writing & Translation","✍️"],["Voice Over","🎙️"]];
-const GRAD = [["#0b8f63","#16c58b"],["#4f46e5","#7c3aed"],["#e11d74","#f59e0b"],["#0284c7","#22d3ee"],["#0f172a","#4f46e5"],["#b45309","#f59e0b"],["#be123c","#fb7185"]];
-
-const $ = id => document.getElementById(id);
-const pkr = n => "PKR " + Math.round(Number(n)||0).toLocaleString("en-PK");
-const toast = (m, t) => { const e = document.createElement("div"); e.className = "toast " + (t||""); e.textContent = m; $("toasts").appendChild(e); setTimeout(()=>e.remove(), 3800); };
-const M = {
-  show: (html) => { $("box").innerHTML = html; $("mod").classList.add("on"); },
-  close: () => { $("mod").classList.remove("on"); }
-};
-
-// ==========================================
-// 2. AUTHENTICATION
-// ==========================================
-supabase.auth.onAuthStateChange(async (event, session) => {
-  if (session) {
-    // Fetch user profile from public.users
-    const { data } = await supabase.from('users').select('*').eq('auth_user_id', session.user.id).single();
-    ME = data;
-    updateNav();
-    loadGigs();
-  } else {
-    ME = null;
-    updateNav();
-  }
-});
-
-function updateNav() {
-  const nav = $("navR");
-  if (ME) {
-    const role = ME.role || 'buyer';
-    nav.innerHTML = `
-      <button class="wpill" onclick="openWallet()">${pkr(ME.balance_pkr || 0)}</button>
-      <button class="btn ghost sm" onclick="openOrders()">Orders</button>
-      ${role === 'admin' ? `<button class="btn dark sm" onclick="openAdmin()">Admin</button>` : ''}
-      <button class="btn bad sm" onclick="logout()">Logout</button>
-    `;
-  } else {
-    nav.innerHTML = `<button class="btn pri sm" onclick="openAuth()">Sign In / Join</button>`;
-  }
-}
-
-function openAuth() {
-  M.show(`
-    <button class="x" onclick="M.close()">Close</button>
-    <h2>Welcome to Hunar.pk</h2>
-    <p class="note">Sign in to your account or create a new one.</p>
-    <div class="fld"><label>Email</label><input type="email" id="auth-email" placeholder="you@example.com"></div>
-    <div class="fld"><label>Password</label><input type="password" id="auth-pass" placeholder="••••••••"></div>
-    <p class="err" id="auth-err"></p>
-    <button class="btn pri full" style="margin-top:12px" onclick="handleLogin()">Login</button>
-    <button class="btn ghost full" style="margin-top:10px" onclick="handleSignup()">Create Account</button>
-  `);
-}
-
-async function handleLogin() {
-  const email = $("auth-email").value;
-  const password = $("auth-pass").value;
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) $("auth-err").innerText = error.message;
-  else M.close();
-}
-
-async function handleSignup() {
-  const email = $("auth-email").value;
-  const password = $("auth-pass").value;
-  const { error } = await supabase.auth.signUp({ email, password });
-  if (error) $("auth-err").innerText = error.message;
-  else toast("Account created! You can now login.", "ok");
-}
-
-async function logout() {
-  await supabase.auth.signOut();
-  location.reload();
-}
-
-// ==========================================
-// 3. GIGS & RENDERING
-// ==========================================
-async function loadGigs() {
-  const { data, error } = await supabase.from('gigs').select('*').eq('active', true);
-  if (error) { toast("Error loading gigs", "bad"); return; }
-  GIGS = data || [];
-  renderGigs();
-}
-
-function renderGigs() {
-  const grid = $("grid");
-  $("count").innerText = GIGS.length + " services available";
-  
-  if (GIGS.length === 0) {
-    grid.innerHTML = `<div class="empty">No gigs found. (Add some via Supabase dashboard).</div>`;
-    return;
-  }
-
-  grid.innerHTML = GIGS.map(g => {
-    const c = g.category || "Graphic Design";
-    const cIndex = CATS.findIndex(x => x[0] === c) !== -1 ? CATS.findIndex(x => x[0] === c) : 0;
-    const grad = GRAD[cIndex % GRAD.length];
-    return `
-      <article class="gig" onclick="openGig(${g.id})">
-        <div class="cov" style="background:linear-gradient(135deg,${grad[0]},${grad[1]})">
-          <span class="ic">${CATS[cIndex][1]}</span>
-          ${c}
-        </div>
-        <div class="gb">
-          <div class="sel">
-            <div class="av" style="background:${grad[0]}">${g.title.charAt(0)}</div>
-            <div><b>${g.title}</b><small>Verified Partner</small></div>
-          </div>
-          <div class="gt" style="display:none">${g.description}</div>
-          <div class="gf">
-            <span><span class="star">★</span> <b>5.0</b></span>
-            <span>From <b>${pkr(g.basic_price_pkr)}</b></span>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join('');
-}
-
-// ==========================================
-// 4. GIG DETAILS & ORDER CREATION
-// ==========================================
-async function openGig(id) {
-  if (!ME) { toast("Please login to view details"); openAuth(); return; }
-  const g = GIGS.find(x => x.id === id);
-  
-  M.show(`
-    <button class="x" onclick="M.close()">Close</button>
-    <h2>${g.title}</h2>
-    <p class="note" style="margin-top:6px">${g.description}</p>
-    
-    <div class="tabs">
-      <button class="on" id="tab-basic" onclick="selectPkg('basic')">Basic</button>
-  nclick="selectPkg('standard')">Standard</button>
-      <button id="tab-premium" onclick="selectPkg('premium')">Premium</button>
-    </div>
-
-    <div class="pk hl">
-      <div class="pr" id="pkg-price">${pkr(g.basic_price_pkr)}</div>
-      <div class="note">Delivery in ${g.delivery_days || 3} days</div>
-    </div>
-
-    <button class="btn pri full" style="margin-top:16px" onclick="placeOrder(${g.id}, 'basic')" id="order-btn">Order Now (Basic)</button>
-    <p class="note" style="text-align:center;margin-top:8px">Escrow protected. 5% buyer fee applies.</p>
-  `);
-}
-
-let SELECTED_PKG = 'basic';
-let SELECTED_PRICE = 0;
-
-function selectPkg(pkg) {
-  SELECTED_PKG = pkg;
-  document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('on'));
-  $(`tab-${pkg}`).classList.add('on');
-  
-  const g = GIGS.find(x => x.id === parseInt($("order-btn").getAttribute('onclick').match(/\d+/)[0]));
-  SELECTED_PRICE = pkg === 'basic' ? g.basic_price_pkr : pkg === 'standard' ? g.standard_price_pkr : g.premium_price_pkr;
-  
-  $("pkg-price").innerText = pkr(SELECTED_PRICE);
-  $("order-btn").innerText = `Order Now (${pkg.charAt(0).toUpperCase() + pkg.slice(1)})`;
-  $("order-btn").setAttribute('onclick', `placeOrder(${g.id}, '${pkg}')`);
-}
-
-async function placeOrder(gigId, pkg) {
-  // Call our secure SQL function
-  const { error } = await supabase.rpc('fn_create_order', {
-    p_gig_id: gigId,
-    p_package: pkg
-  });
-
-  if (error) {
-    if (error.message.includes("Insufficient wallet balance")) {
-      toast("Not enough wallet balance. Please top up.", "bad");
-      openWallet();
-    } else {
-      toast(error.message, "bad");
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
     }
-  } else {
-    toast("Order placed successfully!", "ok");
-    M.close();
-  }
-}
+    a { color: inherit; text-decoration: none; }
+    button, input {
+      font: inherit;
+    }
+    .w {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .hd {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,0.82);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      height: 66px;
+      gap: 18px;
+    }
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .logo span {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .sp { flex: 1; }
+    #navR {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn.pri {
+      background: var(--grad);
+      color: white;
+      box-shadow: 0 8px 20px -8px rgba(11, 143, 99, 0.7);
+    }
+    .btn.ghost {
+      background: #fff;
+      border-color: var(--line);
+      color: var(--ink);
+    }
+    .btn.dark {
+      background: var(--navy);
+      color: white;
+    }
+    .btn.bad {
+      background: #fff1f1;
+      color: var(--red);
+      border-color: #ffd5d6;
+    }
+    .btn.sm {
+      padding: 7px 12px;
+      font-size: 13px;
+      border-radius: 10px;
+    }
+    .hero {
+      background: radial-gradient(circle at top right, rgba(22,197,139,0.3), transparent 35%), var(--navy);
+      color: white;
+      padding: 60px 0 72px;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    h1 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin: 20px 0 16px;
+    }
+    h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, #34e6a8, #a5b4fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .lead {
+      color: #c3cde6;
+      font-size: 17px;
+      max-width: 520px;
+    }
+    .stats {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+    .stats b {
+      display: block;
+      font-size: 26px;
+    }
+    .stats span {
+      color: #aebbe0;
+      font-size: 13px;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.95);
+      color: var(--ink);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      max-width: 320px;
+      margin-left: auto;
+    }
+    .hero-card small { color: var(--muted); display: block; }
+    .hero-card b { font-size: 22px; }
+    .bar {
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .bar i {
+      display: block;
+      height: 100%;
+      width: 68%;
+      background: var(--grad);
+      border-radius: inherit;
+    }
+    section {
+      padding: 40px 0;
+    }
+    .sh {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 12px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .sh h2 {
+      margin: 0;
+      font-size: 28px;
+    }
+    .sh p {
+      color: var(--muted);
+      margin: 4px 0 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 18px;
+    }
+    .gig {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.02);
+    }
+    .gig-top {
+      padding: 16px;
+      min-height: 100px;
+      display: flex;
+      align-items: end;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      background: linear-gradient(135deg, #0b8f63, #16c58b);
+    }
+    .gig-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+    .gig-title {
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .gig-price {
+      margin-top: auto;
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .empty {
+      padding: 40px 12px;
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      border-radius: 14px;
+      background: #fff;
+    }
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(8,14,32,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 100;
+    }
+    .modal.show { display: flex; }
+    .modal-card {
+      background: white;
+      width: min(560px, 100%);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+    .modal-card h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+    .close-btn {
+      float: right;
+      border: none;
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .field {
+      margin-top: 12px;
+    }
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: #26365c;
+    }
+    .field input {
+      width: 100%;
+      padding: 11px 13px;
+      border-radius: 12px;
+      border: 1.5px solid var(--line);
+      background: #fff;
+    }
+    .field input:focus {
+      outline: none;
+      border-color: var(--green-2);
+      box-shadow: 0 0 0 4px rgba(22,197,139,0.18);
+    }
+    .err {
+      min-height: 20px;
+      color: var(--red);
+      font-weight: 600;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    .full { width: 100%; }
+    footer {
+      background: white;
+      border-top: 1px solid var(--line);
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 30px;
+    }
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-card { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hd">
+    <div class="w nav">
+      <a class="logo" href="#top">Hunar<span>.pk</span></a>
+      <div class="sp"></div>
+      <div id="navR">
+        <button class="btn pri sm" onclick="openAuth()">Sign In / Join</button>
+      </div>
+    </div>
+  </header>
 
-// ==========================================
-// 5. WALLET (Deposit / Withdraw)
+  <section class="hero" id="top">
+    <div class="w hero-inner">
+      <div>
+        <span class="eyebrow">🇵🇰 Made for Pakistan</span>
+        <h1>Hire Pakistan's best talent, <em>protected by escrow</em></h1>
+        <p class="lead">Verified designers, editors, developers and creators. Pay in PKR through Easypaisa, JazzCash or your bank. Your money stays safe in escrow until you approve the work.</p>
+        <div class="stats">
+          <div><b>5%</b><span>Buyer fee only</span></div>
+          <div><b>10%</b><span>Partner commission</span></div>
+          <div><b>PKR</b><span>Local payments</span></div>
+        </div>
+      </div>
+
+      <div class="hero-card" aria-hidden="true">
+        <small>Escrow secured</small>
+        <b>PKR 10,500</b>
+        <div class="bar"><i></i></div>
+        <small style="margin-top:8px;">Order in progress</small>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="w">
+      <div class="sh">
+        <div>
+          <h2>Explore services</h2>
+          <p>Compare verified partners by rating, price and delivery time.</p>
+        </div>
+      </div>
+      <div id="gigsGrid" class="grid"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="w">
+      © Hunar.pk — a marketplace for Pakistan's freelancers.
+    </div>
+  </footer>
+
+  <div class="modal" id="authModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeAuth()">Close</button>
+      <h2>Welcome to Hunar.pk</h2>
+      <p style="color: var(--muted); margin: 8px 0 0;">Sign in to your account or create a new one.</p>
+
+      <div class="field">
+        <label for="authEmail">Email</label>
+        <input id="authEmail" type="email" placeholder="you@example.com" />
+      </div>
+
+      <div class="field">
+        <label for="authPass">Password</label>
+        <input id="authPass" type="password" placeholder="••••••••" />
+      </div>
+
+      <div id="authErr" class="err"></div>
+
+      <div style="margin-top: 14px; display: grid; gap: 10px;">
+        <button class="btn pri full" onclick="handleLogin()">Login</button>
+        <button class="btn ghost full" onclick="handleSignup()">Create Account</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://hgkijsaotawhkbcceqme.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_Dal5rNWzgMZmkTQHX997GA_9kYgEqpY";
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    let currentUser = null;
+
+    function setNav() {
+      const nav = document.getElementById('navR');
+      if (currentUser && currentUser.role === 'admin') {
+        nav.innerHTML = `
+          <button class="btn dark sm" onclick="openAdmin()">Admin</button>
+          <button class="btn bad sm" onclick="logout()">Logout</button>
+        `;
+      } else if (currentUser) {
+        nav.innerHTML = `
+          <button class="btn ghost sm" onclick="openOrders()">Orders</button>
+          <button class="btn bad sm" onclick="logout()">Logout</button>
+        `;
+      } else {
+        nav.innerHTML = `<button class="btn pri sm" onclick="openAuth()">Sign In / Join</button>`;
+      }
+    }
+
+    function openAuth() {
+      document.getElementById('authModal').classList.add('show');
+    }
+
+    function closeAuth() {
+      document.getElementById('authModal').classList.remove('show');
+      document.getElementById('authErr').textContent = '';
+    }
+
+    async function handleLogin() {
+      const email = document.getElementById('authEmail').value.trim();
+      const password = document.getElementById('authPass').value;
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        document.getElementById('authErr').textContent = error.message;
+        return;
+      }
+
+      if (data && data.user) {
+        closeAuth();
+      }
+    }
+
+    async function handleSignup() {
+      const email = document.getElementById('authEmail').value.trim();
+      const password = document.getElementById('authPass').value;
+
+      const { data, error } = await supabase.auth.signUp({ email, password });
+
+      if (error) {
+        document.getElementById('authErr').textContent = error.message;
+        return;
+      }
+
+      if (data && data.user) {
+        document.getElementById('authErr').textContent = 'Account created! Please sign in.';
+      }
+    }
+
+    async function logout() {
+      await supabase.auth.signOut();
+      currentUser = null;
+      setNav();
+    }
+
+    function renderGigs(gigs) {
+      const grid = document.getElementById('gigsGrid');
+      if (!gigs || gigs.length === 0) {
+        grid.innerHTML = '<div class="empty">No gigs found. Add some from your Supabase database to show services here.</div>';
+        return;
+      }
+
+      const colors = [
+        'linear-gradient(135deg, #0b8f63, #16c58b)',
+        'linear-gradient(135deg, #4f46e5, #7c3aed)',
+        'linear-gradient(135deg, #e11d74, #f59e0b)',
+        'linear-gradient(135deg, #0284c7, #22d3ee)',
+        'linear-gradient(135deg, #0f172a, #4f46e5)'
+      ];
+
+      grid.innerHTML = gigs.map((gig, index) => `
+        <article class="gig">
+          <div class="gig-top" style="background:${colors[index % colors.length]};">
+            ${gig.category || 'Service'}
+          </div>
+          <div class="gig-body">
+            <div class="gig-title">${gig.title || 'Untitled Gig'}</div>
+            <div style="color: var(--muted); font-size: 14px;">${gig.description || 'No description provided.'}</div>
+            <div class="gig-price">
+              <span>From</span>
+              <strong>PKR ${Number(gig.basic_price_pkr || 0).toLocaleString('en-PK')}</strong>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    async function loadGigs() {
+      const { data, error } = await supabase.from('gigs').select('*').eq('active', true);
+      if (error) {
+        document.getElementById('gigsGrid').innerHTML = '<div class="empty">Unable to load gigs. Check your Supabase table and permissions.</div>';
+        return;
+      }
+      renderGigs(data || []);
+    }
+
+    async function loadUserProfile() {
+      const { data: { session }, error } = await supabase.auth.getSession();
+      if (error || !session) {
+        currentUser = null;
+        setNav();
+        return;
+      }
+
+      const { data: profile } = await supabase
+        .from('users')
+        .select('*')
+        .eq('auth_user_id', session.user.id)
+        .maybeSingle();
+
+      currentUser = profile || { role: 'buyer' };
+      setNav();
+    }
+
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (session) {
+        loadUserProfile();
+      } else {
+        currentUser = null;
+        setNav();
+      }
+    });
+
+    function openAdmin() {
+      alert('Admin panel is ready when you connect it to your Supabase admin flows.');
+    }
+
+    function openOrders() {
+      alert('Orders view can be connected to your orders table.');
+    }
+
+    loadUserProfile();
+    loadGigs();
+  </script>
+</body>
+</html>
